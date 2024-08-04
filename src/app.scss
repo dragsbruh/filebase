@@ -1,0 +1,19 @@
+$background: #0d101a;
+$primary: #93a8df;
+$secondary: #14358a;
+$accent: #2a64fa;
+
+$bradius: 0.2rem;
+
+@use "bulma/sass" with (
+  $primary: $primary,
+  $link: $secondary,
+  $control-border-width: 2px,
+  $background: $background,
+  $input-shadow: none,
+
+  $radius-small: $bradius,
+  $radius: $bradius,
+  $radius-medium: $bradius,
+  $radius-large: $bradius
+);

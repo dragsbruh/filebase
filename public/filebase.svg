@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" width="500" height="500"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:bx="https://boxy-svg.com">
+    <defs>
+        <radialGradient id="gradient-2-0" gradientUnits="userSpaceOnUse" cx="245.557" cy="238.3" r="152.251" spreadMethod="reflect" gradientTransform="matrix(1, 0, 0, 1, 51.243644, 11.108082)" xlink:href="#gradient-2"/>
+        <linearGradient id="gradient-2" bx:pinned="true">
+            <title>Regular</title>
+            <stop offset="0" style="stop-color: rgb(255, 86, 229);"/>
+            <stop offset="1" style="stop-color: rgb(125, 187, 247);"/>
+        </linearGradient>
+        <filter id="drop-shadow-filter-0" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%" bx:preset="drop-shadow 1 10 10 7 0.25 #004dff73">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7"/>
+            <feOffset dx="10" dy="10"/>
+            <feComponentTransfer result="offsetblur">
+                <feFuncA id="spread-ctrl" type="linear" slope="0.5"/>
+            </feComponentTransfer>
+            <feFlood flood-color="#004dff73"/>
+            <feComposite in2="offsetblur" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="gradient-0-0" gradientUnits="userSpaceOnUse" x1="282.511" y1="101.092" x2="282.511" y2="384.627" gradientTransform="matrix(1, 0, 0, 1, -145.663022, -30.181302)" xlink:href="#gradient-0"/>
+        <linearGradient id="gradient-0">
+            <title>Firey</title>
+            <stop style="stop-color: rgb(212, 0, 0);" offset="0"/>
+            <stop style="stop-color: rgb(255, 245, 0);" offset="0.632"/>
+        </linearGradient>
+    </defs>
+    <path style="filter: url('#drop-shadow-filter-0'); fill: url('#gradient-2-0'); paint-order: stroke; fill-rule: evenodd; stroke: rgba(0, 0, 0, 0);" d="M 145.734 85.9 L 449.051 71.089 L 223.34 168.244 L 368.483 202.607 L 231.042 238.743 L 182.464 428.91 L 145.734 85.9 Z" transform="matrix(1, 0, 0, 1, 1.4210854715202004e-14, 0)">
+        <title>F</title>
+    </path>
+    <path style="fill: url('#gradient-0-0'); stroke: rgba(0, 0, 0, 0); filter: drop-shadow(rgba(255, 0, 0, 0.3) 10px 10px 9px);" d="M 62.571 75.416 C 77.691 64.076 200.284 77.786 202.382 77.194 C 204.48 76.602 173.73 208.71 172.761 208.71 C 171.416 207.813 208.045 198.269 211.268 200.417 C 201.569 210.116 102.602 354.699 102.856 354.445 C 102.669 354.445 123.346 254.327 125.96 254.327 L 104.633 262.027 C 101.572 261.007 116.512 210.59 118.851 212.857 C 121.19 215.124 93.242 222.725 91.008 219.374 C 90.639 219.374 60.095 75.416 62.571 75.416 Z" transform="matrix(1, 0, 0, 1, 1.4210854715202004e-14, 0)"/>
+</svg>
