@@ -10,7 +10,6 @@
       ({ content, level } = notif);
     });
   });
-
 </script>
 
 {#if content !== null}
@@ -22,6 +21,11 @@
         level = "";
       }}
     ></button>
-    {content}
+    {#each content.split("\n") as block, index}
+      {block}
+      {#if content.split("\n").length !== index + 1}
+        <br />
+      {/if}
+    {/each}
   </div>
 {/if}

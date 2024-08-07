@@ -52,10 +52,13 @@ export class MemoryDirectory extends Directory {
     if (await this.exists(destination)) {
       throw new FileExistsError(destination);
     }
-    this.children.set(
-      destination,
-      this.children.get(source) as MemoryDirectory | MemoryFile
-    );
+
+    let item = this.children.get(source) as MemoryDirectory | MemoryFile;
+
+    item.name = destination;
+
+    this.children.set(destination, item);
+    this.children.delete(source);
   }
   public async exists(source: string): Promise<boolean> {
     return this.children.has(source);

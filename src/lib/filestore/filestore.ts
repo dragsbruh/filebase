@@ -16,11 +16,11 @@ export class Path {
   }
 
   get raw() {
-    return this._components.join("/");
+    return "/" + this._components.join("/");
   }
 
   get dirname() {
-    return this._components.slice(0, -1).join("/") || "/";
+    return "/" + this._components.slice(0, -1).join("/") || "/";
   }
 
   get basename() {

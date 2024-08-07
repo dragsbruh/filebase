@@ -10,7 +10,6 @@
 </script>
 
 <section class="section">
-  <Notification />
   <Router {url}>
     <Route path="/" component={LandingPage} />
     <Route path="/fs/:name" let:params>
@@ -25,4 +24,5 @@
     </Route>
     <Route path="/*" component={NotFoundPage} />
   </Router>
+  <Notification />
 </section>
