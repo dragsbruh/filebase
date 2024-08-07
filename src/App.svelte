@@ -12,14 +12,14 @@
 <section class="section">
   <Router {url}>
     <Route path="/" component={LandingPage} />
-    <Route path="/fs/:name" let:params>
+    <Route path="/app/:name" let:params>
       <ViewerPage
         params={{
           ...params,
         }}
       />
     </Route>
-    <Route path="/fs/:name/*" let:params>
+    <Route path="/app/:name/*" let:params>
       <ViewerPage {params} />
     </Route>
     <Route path="/*" component={NotFoundPage} />

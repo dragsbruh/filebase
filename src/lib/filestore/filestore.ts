@@ -122,6 +122,11 @@ export abstract class Directory implements StatItem {
   public abstract touch(destination: string): Promise<void>; // Creates a new empty file named `destination`
   public abstract mkdir(destination: string): Promise<void>; // Creates a new empty directory named `destination`
 
+  public abstract putIn(
+    destination: string,
+    item: File | Directory
+  ): Promise<void>; // Internal use only
+
   public async stat(): Promise<StatItem> {
     return this as StatItem;
   }

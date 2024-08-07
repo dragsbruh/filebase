@@ -3,22 +3,27 @@
 <!-- svelte-ignore a11y-missing-attribute -->
 <script lang="ts">
   import { onMount } from "svelte";
-  import { MemoryFS } from "../lib/memfs";
   import {
     Path,
     type StatItem,
     File,
     Directory,
+    FileStore,
   } from "../lib/filestore/filestore";
+
   import { formatBytes } from "../utils";
   import notify from "../stores/notification";
+  import Preview from "../components/Preview.svelte";
+  import { getSystemInstance } from "../lib/system";
+
+  import '../lib/memfs';
 
   export let params;
 
   let systemname = params.name;
   let systempath = params["*"] ? params["*"] : ""; // Access wildcard parameter
 
-  let system: MemoryFS;
+  let system: FileStore;
   let files: StatItem[] = [];
 
   let path: Path;
@@ -121,7 +126,7 @@
         let item = await system.nestedItem(file.raw);
 
         if (item instanceof File) {
-          destination.children.set(file.basename, item);
+          await destination.putIn(file.basename, item);
         } else if (item instanceof Directory) {
           if (await destination.exists(file.basename)) {
             failed.push({
@@ -129,7 +134,7 @@
               path: file,
             });
           } else {
-            destination.children.set(file.basename, item);
+            await destination.putIn(file.basename, item);
           }
         }
       }
@@ -227,7 +232,7 @@
     const newname = prompt(`New name for ${tbr.name}:`);
     if (newname) {
       let parent = await system.nestedItem(path.raw);
-      
+
       if (!(parent instanceof Directory)) {
         notify(`Error getting parent`, "danger");
         return;
@@ -250,15 +255,16 @@
   document.addEventListener("drop", handleDrop);
 
   onMount(async () => {
-    system = new MemoryFS();
+    console.log(getSystemInstance(systemname));
+
+    let inst = getSystemInstance(systemname);
+    if (inst === undefined) {
+      notify(`Unknown file system type '${systemname}'`, "danger");
+      return;
+    }
+    system = new inst();
     await system.init();
 
-    const l = (await system.nestedItem("/openme")) as Directory;
-    await l.mkdir("twofold");
-    const k = (await system.nestedItem("/openme/twofold/")) as Directory;
-    await k.touch("test.png");
-    await l.touch("test.txt");
-    await l.touch("yomama.txt");
     loadPath(systempath);
   });
 </script>
@@ -389,7 +395,7 @@
 
 {#if activefile}
   <div class="container mt-5">
-    {activefile.name}
+    <Preview file={activefile} />
   </div>
 {/if}
 

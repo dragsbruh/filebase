@@ -12,6 +12,7 @@ import {
   Path,
   type StatItem,
 } from "./filestore/filestore";
+import { registerSystem } from "./system";
 
 export class MemoryFile extends File {
   contents: Uint8Array;
@@ -131,6 +132,10 @@ export class MemoryDirectory extends Directory {
     });
     return stats;
   }
+
+  public async putIn(name: string, item: MemoryFile | MemoryDirectory) {
+    this.children.set(name, item);
+  }
 }
 
 export class MemoryFS extends FileStore {
@@ -140,12 +145,7 @@ export class MemoryFS extends FileStore {
     this.root = new MemoryDirectory("root");
   }
 
-  public async init(): Promise<void> {
-    await this.root.mkdir("openme");
-    (await (await this.root.opendir("openme")).open("hello.txt", true)).write(
-      new TextEncoder().encode("- your dad")
-    );
-  }
+  public async init(): Promise<void> {}
 
   public async nestedItem(
     path: string
@@ -164,3 +164,5 @@ export class MemoryFS extends FileStore {
     return current;
   }
 }
+
+registerSystem("memfs", MemoryFS);
